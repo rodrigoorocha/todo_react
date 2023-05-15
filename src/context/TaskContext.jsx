@@ -4,8 +4,12 @@ export const TaskContext = createContext()
 
 export function TaskProvider({children}){
 
-    const [tasks, setTasks] = useState([])
-
+    const [tasks, setTasks] = useState([{
+        id: "9898989898",
+        name: "lavar roupa",
+        priority :"2"
+    }])
+    const [activeTask, setActiveTask] = useState();
 
     const createTask = (task) =>{
         setTasks(currentTasks => [...currentTasks, task]) 
@@ -25,7 +29,7 @@ export function TaskProvider({children}){
 
     return(
 
-        <TaskContext.Provider value={{tasks,deleteTask, createTask }}>
+        <TaskContext.Provider value={{tasks,deleteTask, createTask, updateTask, activeTask, setActiveTask }}>
             {children}
         </TaskContext.Provider>
         )

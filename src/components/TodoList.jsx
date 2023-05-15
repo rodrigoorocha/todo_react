@@ -7,27 +7,24 @@ import { useDisclosure } from '@mantine/hooks'
 
 function TodoList() {
 
-    const { tasks, deleteTask } = useContext(TaskContext)  
-    const [opened, { open, close }] = useDisclosure(true); 
-    //const [activeTask, setActiveTask] = useState({})
-    
-    
-    
+    const { tasks, deleteTask, activeTask, setActiveTask } = useContext(TaskContext)  
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(()=> true);
+    const handleClose = () => setOpen(()=> false);
+
+
     const handleUpdateClick = (task) => { 
         setActiveTask( () => ({...task}))
-        open()
+        handleOpen()
+        
      }
     
     return (
-
-
         <>
-        <Modal opened={opened} onClose={close}>
-        <form action="">
-            <input type="text" />
-        </form>
-        </Modal>
-
+        
+        
+        <UpdateModal open={open} handleClose={handleClose} activeTask={activeTask}/>
+        
         <Table >
             <thead>
                 <tr>
