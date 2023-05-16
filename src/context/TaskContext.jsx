@@ -6,7 +6,7 @@ export function TaskProvider({children}){
 
     const [tasks, setTasks] = useState([{
         id: "9898989898",
-        name: "lavar roupa",
+        name: "Criar modal",
         priority :"2"
     }])
     const [activeTask, setActiveTask] = useState();

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Button, Group, Input, Select, TextInput, Title } from '@mantine/core';
 import { PRIORITIES } from '../constants/taskTypes';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { TaskContext } from '../context/TaskContext';
 
 
@@ -17,7 +17,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-
   boxShadow: 24,
   p: 4,
 };
@@ -26,8 +25,16 @@ export default function UpdateModal({ open, handleClose, activeTask }) {
 
   const { updateTask } = useContext(TaskContext)
 
-  const [name, setName] = useState(activeTask.name)
-  const [priority, setPriority] = useState(activeTask.priority)
+  const [name, setName] = useState()
+  const [priority, setPriority] = useState()
+
+
+  useEffect(() => {
+    setName(activeTask.name)
+    setPriority(activeTask.priority)
+
+  }, [activeTask])
+
 
   const handleConfirmClick = () => {
     updateTask({
@@ -66,7 +73,7 @@ export default function UpdateModal({ open, handleClose, activeTask }) {
             data={PRIORITIES}
             withAsterisk
             value={priority}
-            
+
 
           />
 

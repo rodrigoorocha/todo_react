@@ -21,9 +21,8 @@ function TodoList() {
     
     return (
         <>
-        
-        
-        <UpdateModal open={open} handleClose={handleClose} activeTask={activeTask}/>
+        {activeTask && <UpdateModal open={open} handleClose={handleClose} activeTask={activeTask}/>}
+
         
         <Table >
             <thead>
